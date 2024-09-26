@@ -10,16 +10,14 @@ pub struct IopClient {
     server_url: String,
     app_key: String,
     app_secret: String,
-    timeout: u64,
 }
 
 impl IopClient {
-    pub fn new(server_url: &str, app_key: &str, app_secret: &str, timeout: u64) -> Self {
+    pub fn new(server_url: &str, app_key: &str, app_secret: &str) -> Self {
         Self {
             server_url: server_url.to_string(),
             app_key: app_key.to_string(),
             app_secret: app_secret.to_string(),
-            timeout,
         }
     }
 
