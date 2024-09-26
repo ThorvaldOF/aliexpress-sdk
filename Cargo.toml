@@ -1,6 +1,14 @@
 [package]
 name = "aliexpress-sdk"
-version = "0.1.0"
+version = "1.0.0"
+authors = ["ThorvaldOF"]
+license = "MIT"
+description = "A Rust implementation of the Aliexpress Open Platform SDK"
+readme = "README.md"
+keywords = ["api", "aliexpress", "sdk", "hmac"]
+categories = ["api-bindings", "web-programming"]
+homepage = "https://github.com/ThorvaldOF/aliexpress-sdk"
+repository = "https://github.com/ThorvaldOF/aliexpress-sdk"
 edition = "2021"
 
 [dependencies]
