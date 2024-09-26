@@ -1,18 +1,17 @@
-# IOP SDK Rust
+# Aliexpress SDK Rust
 
-This project is a Rust port of an SDK originally written in Python. The SDK simplifies interactions with an API by managing HMAC signature generation, organizing parameters, and executing HTTP requests. The SDK is designed to be flexible, easy to use, and production-ready.
+This repository contains a Rust implementation of the Aliexpress SDK. The SDK is designed to handle the complexities of signing requests, managing API parameters, and processing responses. It provides a convenient way to interact with the Aliexpress Open Platform API that require HMAC-SHA256 signing for secure communication.
 
 ## Features
 
-- **HMAC Signature Generation**: The SDK uses a secret key to generate HMAC-SHA256 signatures to secure API requests.
-- **API Parameter Management**: The SDK facilitates the addition and management of API parameters and files for POST requests.
-- **Asynchronous HTTP Requests**: The SDK handles GET and POST requests using the `reqwest` library, supporting asynchronous requests for better performance.
-- **Logging**: The SDK includes a logging mechanism to record API errors, with configurable logging levels.
-- **Ease of Use**: The SDK simplifies authentication of requests by automatically adding timestamps, signatures, and managing access tokens.
+- **HMAC-SHA256 Signature Generation**: Automatically generates signatures for API requests using the provided secret key.
+- **Request Management**: Facilitates the creation and management of API requests, including adding parameters and handling file uploads.
+- **Response Parsing**: Processes API responses and provides structured access to the data.
+- **Asynchronous HTTP Requests**: Utilizes asynchronous requests to interact with the API, ensuring non-blocking operations.
 
 ## Installation
 
-Add the following line to your `Cargo.toml` to include this SDK in your project:
+Add the following to your `Cargo.toml` to include this SDK in your Rust project:
 
 ```toml
 [dependencies]
@@ -23,17 +22,17 @@ iop-sdk = { git = "https://github.com/your-repo/iop-sdk-rust" }
 
 ### Creating a Client
 
-To start using the SDK, first create an `IopClient` with the server URL, `app_key`, `app_secret`, and a timeout:
+Start by creating an `IopClient` with the server URL, `app_key`, and `app_secret`:
 
 ```rust
 use iop_sdk::IopClient;
 
-let client = IopClient::new("https://api.example.com", "your_app_key", "your_app_secret", 30);
+let client = IopClient::new("https://api.example.com", "your_app_key", "your_app_secret");
 ```
 
 ### Creating a Request
 
-Next, create a request by specifying the API name you want to call:
+Create an `IopRequest` by specifying the API method you wish to call. You can add parameters and configure the request format:
 
 ```rust
 use iop_sdk::IopRequest;
@@ -45,7 +44,7 @@ request.set_format("json");
 
 ### Executing the Request
 
-Once the request is configured, you can execute it using the client:
+Execute the request asynchronously using the `IopClient`:
 
 ```rust
 use tokio::runtime::Runtime;
@@ -61,7 +60,7 @@ match response {
 
 ### Handling the Response
 
-The SDK returns an `IopResponse` structure that contains the API response details:
+The SDK returns an `IopResponse` that contains details of the API response. You can access various fields such as the response code, message, and body:
 
 ```rust
 println!("Code: {:?}", response.code());
@@ -69,13 +68,22 @@ println!("Message: {:?}", response.message());
 println!("Body: {:?}", response.body());
 ```
 
-## Logging
+### Example: Signing a Request
 
-The SDK includes a logging mechanism to record errors encountered during API calls. By default, the logging level is set to `ERROR`, but you can modify it according to your needs.
+The SDK includes a function for generating HMAC-SHA256 signatures required by the API:
 
-## Contribution
+```rust
+use iop_sdk::sign;
+use std::collections::HashMap;
 
-Contributions are welcome! Please submit pull requests and issues on the GitHub repository.
+let secret = "your_secret_key";
+let api = "/api/getProductDetails";
+let mut parameters = HashMap::new();
+parameters.insert("product_id".to_string(), "12345".to_string());
+
+let signature = sign(secret, api, &parameters);
+println!("Generated Signature: {}", signature);
+```
 
 ## License
 
