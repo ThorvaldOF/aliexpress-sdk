@@ -1,7 +1,3 @@
-Here’s the README content in plain text for easy copying:
-
----
-
 # IOP SDK Rust
 
 This project is a Rust port of an SDK originally written in Python. The SDK simplifies interactions with an API by managing HMAC signature generation, organizing parameters, and executing HTTP requests. The SDK is designed to be flexible, easy to use, and production-ready.
