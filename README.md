@@ -15,7 +15,7 @@ Add the following to your `Cargo.toml` to include this SDK in your Rust project:
 
 ```toml
 [dependencies]
-iop-sdk = { git = "https://github.com/your-repo/iop-sdk-rust" }
+aliexpress_sdk = "1.0.0"
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ iop-sdk = { git = "https://github.com/your-repo/iop-sdk-rust" }
 Start by creating an `IopClient` with the server URL, `app_key`, and `app_secret`:
 
 ```rust
-use iop_sdk::IopClient;
+use aliexpress_sdk::IopClient;
 
 let client = IopClient::new("https://api.example.com", "your_app_key", "your_app_secret");
 ```
@@ -35,7 +35,7 @@ let client = IopClient::new("https://api.example.com", "your_app_key", "your_app
 Create an `IopRequest` by specifying the API method you wish to call. You can add parameters and configure the request format:
 
 ```rust
-use iop_sdk::IopRequest;
+use aliexpress_sdk::IopRequest;
 
 let mut request = IopRequest::new("getProductDetails", "POST");
 request.add_api_param("product_id", "12345");
@@ -73,7 +73,7 @@ println!("Body: {:?}", response.body());
 The SDK includes a function for generating HMAC-SHA256 signatures required by the API:
 
 ```rust
-use iop_sdk::sign;
+use aliexpress_sdk::sign;
 use std::collections::HashMap;
 
 let secret = "your_secret_key";
