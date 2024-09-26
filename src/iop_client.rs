@@ -1,5 +1,5 @@
+use chrono::Utc;
 use std::collections::HashMap;
-use std::time::{SystemTime, UNIX_EPOCH};
 use reqwest::Client;
 use serde_json::Value;
 use crate::consts::{P_ACCESS_TOKEN, P_APPKEY, P_FORMAT, P_METHOD, P_PARTNER_ID, P_SDK_VERSION, P_SIGN, P_SIGN_METHOD, P_SIMPLIFY, P_TIMESTAMP};
@@ -62,8 +62,7 @@ impl IopClient {
     }
 
     pub fn get_timestamp() -> String {
-        let start = SystemTime::now();
-        let since_the_epoch = start.duration_since(UNIX_EPOCH).expect("Time went backwards");
-        (since_the_epoch.as_secs() * 1000).to_string()
+        let now = Utc::now();
+        now.timestamp_millis().to_string()
     }
 }

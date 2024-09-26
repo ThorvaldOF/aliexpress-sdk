@@ -36,4 +36,28 @@ impl IopRequest {
     pub fn set_format(&mut self, value: &str) {
         self.format = value.to_string();
     }
+
+    pub fn api_name(&self) -> &str {
+        &self.api_name
+    }
+
+    pub fn api_params(&self) -> &HashMap<String, String> {
+        &self.api_params
+    }
+
+    pub fn file_params(&self) -> &HashMap<String, String> {
+        &self.file_params
+    }
+
+    pub fn simplify(&self) -> &str {
+        &self.simplify
+    }
+
+    pub fn format(&self) -> &str {
+        &self.format
+    }
+
+    pub fn http_method(&self) -> &str {
+        &self.http_method
+    }
 }

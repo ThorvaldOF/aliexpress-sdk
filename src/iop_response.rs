@@ -36,4 +36,19 @@ impl IopResponse {
         response.body = Some(json);
         response
     }
+    pub fn r_type(&self) -> Option<&String> {
+        self.r_type.as_ref()
+    }
+    pub fn code(&self) -> Option<&String> {
+        self.code.as_ref()
+    }
+    pub fn message(&self) -> Option<&String> {
+        self.message.as_ref()
+    }
+    pub fn request_id(&self) -> Option<&String> {
+        self.request_id.as_ref()
+    }
+    pub fn body(&self) -> Option<&Value> {
+        self.body.as_ref()
+    }
 }
