@@ -80,7 +80,3 @@ Contributions are welcome! Please submit pull requests and issues on the GitHub 
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
-
----
-
-Now, you can copy this plain text content directly into your README file.
