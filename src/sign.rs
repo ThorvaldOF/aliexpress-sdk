@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 use hmac::{KeyInit, Mac};
-use crate::sdk::consts::HmacSha256;
+use crate::consts::HmacSha256;
 
 pub fn sign(secret: &str, api: &str, parameters: &HashMap<String, String>) -> String {
     let mut sorted_keys: Vec<&String> = parameters.keys().collect();
