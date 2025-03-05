@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-use hmac::{Hmac, KeyInit, Mac};
+use hmac::{Hmac, Mac};
 use sha2::Sha256;
 pub type HmacSha256 = Hmac<Sha256>;
 
